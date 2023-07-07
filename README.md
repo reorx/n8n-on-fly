@@ -8,7 +8,7 @@
 3. Run the following commands:
 
     ```bash
-    fly deploy
+    fly launch
     fly secrets import < prod.env
     ```
 
