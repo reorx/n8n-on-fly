@@ -1,23 +1,32 @@
 # fly.toml file generated for reorx-n8n on 2022-10-13T22:12:56+08:00
 
 app = "reorx-n8n"
+primary_region = "sin"
+
+[[vm]]
+  size = "shared-cpu-2x"
 
 
 [build]
-  image = "n8nio/n8n:0.236.0"
+  image = "n8nio/n8n:1.27.1"
 
 [env]
-  DB_POSTGRESDB_DATABASE = "postgres"
-  DB_POSTGRESDB_PORT = 5432
-  DB_POSTGRESDB_SCHEMA = "public"
-  DB_POSTGRESDB_USER = "postgres"
-  DB_TYPE = "postgresdb"
+  DB_TYPE = "sqlite"
+  # sqlite:
+  DB_SQLITE_VACUUM_ON_STARTUP = "true"
+  # postgres:
+  #DB_POSTGRESDB_DATABASE = "postgres"
+  #DB_POSTGRESDB_PORT = 5432
+  #DB_POSTGRESDB_SCHEMA = "public"
+  #DB_TYPE = "postgresdb"
+  # https://docs.n8n.io/hosting/environment-variables/environment-variables/#executions
   EXECUTIONS_DATA_MAX_AGE = 8
   EXECUTIONS_DATA_PRUNE = "true"
+  EXECUTIONS_DATA_PRUNE_MAX_COUNT = 1000
   EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS = "false"
-  EXECUTIONS_DATA_SAVE_ON_ERROR = "all"
+  #EXECUTIONS_DATA_SAVE_ON_ERROR = "none"
+  #EXECUTIONS_DATA_SAVE_ON_SUCCESS = "none"
   #EXECUTIONS_DATA_SAVE_ON_PROGRESS = "false"
-  EXECUTIONS_DATA_SAVE_ON_SUCCESS = "none"
   GENERIC_TIMEZONE = "Asia/Shanghai"
   N8N_LOG_LEVEL = "verbose"
   PORT = 5678
@@ -26,6 +35,7 @@ app = "reorx-n8n"
   WEBHOOK_URL = "https://n8n.reorx.com/"
   # secrets
   #DB_POSTGRESDB_HOST
+  #DB_POSTGRESDB_USER
   #DB_POSTGRESDB_PASSWORD
   #N8N_ENCRYPTION_KEY
 
@@ -36,3 +46,8 @@ app = "reorx-n8n"
   auto_start_machines = false
   min_machines_running = 1
   processes = ["app"]
+
+
+[mounts]
+  source="n8n_data"
+  destination="/home/node/.n8n"
