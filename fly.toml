@@ -8,7 +8,7 @@ primary_region = "sin"
 
 
 [build]
-  image = "n8nio/n8n:1.27.1"
+  image = "n8nio/n8n:1.61.0"
 
 [env]
   DB_TYPE = "sqlite"
@@ -28,7 +28,7 @@ primary_region = "sin"
   #EXECUTIONS_DATA_SAVE_ON_SUCCESS = "none"
   #EXECUTIONS_DATA_SAVE_ON_PROGRESS = "false"
   GENERIC_TIMEZONE = "Asia/Shanghai"
-  N8N_LOG_LEVEL = "verbose"
+  N8N_LOG_LEVEL = "debug"
   PORT = 5678
   TZ = "Asia/Shanghai"
   VUE_APP_URL_BASE_API = "https://n8n.reorx.com/"
